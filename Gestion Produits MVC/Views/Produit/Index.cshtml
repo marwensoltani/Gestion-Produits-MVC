@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Gestion_Produits_MVC.Models.Produit>
+@Html.Partial("Notification")
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<!--
+<div class="panel panel-default">
+    <div class="panel-heading">Panel Heading</div>
+    <div class="panel-body">Panel Body</div>
+    <div class="panel-footer">Panel Footer</div>
+</div>
+    -->
+<!-- objectif: simplifier l'écriture du panel en utilisant la méthode d'écriture suivante:
+    <div panel-type="Success"
+    body="Panel Body"
+    header="Panel Header"
+    footer="Panel Footer">
+    </div>
+    aussi le choix du type de panel sera à partir d'un Enum
+
+    -->
+<div panel-type="Danger"
+     body="Panel body"
+     header="panel header"
+     footer="panel footer"></div>
+@*
+    @await Component.InvokeAsync("NomFamilles")
+*@
+<vc:nom-familles></vc:nom-familles>
+
+<partial name="Notification" />
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.reference)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.designation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.disponible)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.reference)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.designation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.disponible)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
